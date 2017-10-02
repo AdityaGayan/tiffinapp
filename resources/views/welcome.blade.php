@@ -1,95 +1,158 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Dashboard - Admin Template</title>
+<link rel="stylesheet" type="text/css" href="{{URL::asset('css/theme.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{URL::asset('css/style.css')}}" />
 
-        <title>Laravel</title>
+</head>
+<body>  
+<div id="container">
+    	<div id="header">
+        	<h2>Makemymeals admin panel</h2>
+    <div id="topmenu">
+            	<ul>
+                	<li class="current"><a href="{{url('')}}" >Dashboard</a></li>
+                    <li><a href="{{url('orders')}}" id="orders">Orders</a></li>
+                	<li><a href="{{url('users')}}">Users</a></li>
+                    <li><a href="{{url('foods')}}">Foods</a></li>
+                    
+              </ul>
+          </div>
+      </div>
+        <div id="top-panel">
+            
+         </div
+	</div>
+	<div id="sidebar">
+    <ul>
+      <li><h3><a href="{{url('')}}" class="house">Dashboard</a></h3>
+          <ul>
+              <li><a href="{{url('')}}" class="report">Show Tiffins on DATE</a></li>
+              <!-- <li><a href="#" class="report_seo">A</a></li> -->
+              
+          </ul>
+      </li>
+      <li><h3><a href="{{url('orders')}}" class="folder_table">Orders</a></h3>
+            <ul>
+              <li><a href="{{url('createorder')}}" class="addorder">Create Order</a></li>
+            <li><a href="{{url('orders')}}" class="shipping">Show Orders</a></li>
+              
+          </ul>
+      </li>
+      
+    <li><h3><a href="{{url('users')}}" class="user">Users</a></h3>
+            <ul>
+              <li><a href="{{url('createuser')}}" class="useradd">Create user</a></li>
+              <li><a href="{{url('users')}}" class="group">Show Users</a></li>
+              
+          </ul>
+      </li>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+      <li><h3><a href="{{url('foods')}}" class="manage">Foods</a></h3>
+            <ul>
+              <li><a href="{{url('createfood')}}" class="manage_page">Create Food</a></li>
+              <li><a href="{{url('foods')}}" class="cart">Show Foods</a></li>
+              <!-- <li><a href="#" class="folder">Product categories</a></li>
+              <li><a href="#" class="promotions">Promotions</a></li> -->
+          </ul>
+      </li>
+  </ul>       
+</div>
+          
+          
+     
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    
+		 
+	<div id="infobox">
+        <h5>Tiffins on date</h5>
+        <p>Date: <input type="text" id="date"></p>
+        <button id="go" >GO!</button>
+        
+        <h3>Tiffins</h3> -->
+              <table width="100%">
+			    <thead>
+					<tr>
+                        <th width="40px"><a href="#">Tiffinid<img src="img/icons/arrow_down_mini.gif" width="16" height="16" align="absmiddle" /></a></th>
+                        <th width="100px"><a href="#">L</th>
+                        <th width="150px"><a href="#">D</th>
+                        <th width="10px"><a href="#">Booking ID</th>
+                        <th  width="10px"><a href="#">Customer ID</th>
+                        <th width="30px"><a href="#">Booking Option</th>
+                        <th width="30px"><a href="#">Quantity</th>
+                        <th  width="20px"><a href="#">Date</th>
+                        <th  width="5px"><a href="#">Status</th>
+                        <th width="20px"><a href="#">Type of Meal</th>
+                        <th width="20px"><a href="#">Charges</th>
+                    </tr>
+				</thead>
+				<tbody id="tiffinson">
+						  
+				</tbody>
+            </table>  
 
-            .full-height {
-                height: 100vh;
-            }
+                    <!-- <table width="100%">
+                        <thead>
+							<tr>
+                            	<th><a href="#">Name of Meals<img src="img/icons/arrow_down_mini.gif" width="16" height="16" align="absmiddle" /></a></th>
+                            	<th><a href="#" >No of Meals</a></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tiffins">
+                        
+                        </tbody>
+					</table>
+             -->
+                  </div>
+                  
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+                    <script src="{{URL::asset('js/jquery.js')}}"></script>
+				  
+                  
+                <script>
+            $(function(){
+                // $tiffins.append('<tr><td>'+"Veg Value Meal"+'</td></tr><tr><td>'
+                //                           +"Non Veg Value Meal"+'</td></tr><tr><td>'
+                //                           +"Regular Veg Meal"+'</td></tr><tr><td>'
+                //                           +"Regular Non-Veg Meal"+'</td></tr><tr><td>'
+                //                           +"Shahi Veg Meal"+'</td></tr><tr><td>'
+                //                           +"Shahi Non-Veg Meal"+'</td></tr><tr><td>'
+                //                           +"Catering(Veg)"+'</td></tr><tr><td>'
+                //                           +"Catering(Non-Veg)"+'</td></tr>');
+                var $tiffins= $('#tiffinson');
+                var $date=$('#date');
+                $('#go').on('click', function(){
+                    var order={
+                        date: $date.val(),
 
-            .position-ref {
-                position: relative;
-            }
+                    };
+                    $.ajax({
+                        type: 'POST',
+                        url: 'api/showtiffinson',
+                        data: order,
+                        success: function(tiffins){
+                            
+                            $.each(tiffins.tiffins, function(){
+                            $tiffins.append('<tr><td>'+this.tiffinid+'</td><td>'+this.L+'</td><td>'+this.D+'</td><td>'+this.bookingid+'</td><td>'+this.customerid+'</td><td>'+this.bookingoption+'</td><td>'+this.quantity+'</td><td>'+this.status+'</td><td>'+this.typemeal+'</td><td>'+this.charges+'</td></tr>');
+                        });
+                    }
+                });
+                    
+                });
+                });
+        </script>              
+                  </div>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+				  
+			 
 
-            .content {
-                text-align: center;
-            }
 
-            .title {
-                font-size: 84px;
-            }
+        
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+				  
+ </body>
+			
