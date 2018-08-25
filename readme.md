@@ -29,7 +29,6 @@ If you're not in the mood to read, [Laracasts](https://laracasts.com) contains o
 
 ## Laravel Sponsors
 
-Tiffinapp is an web application for ordering foods online
 
 We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
 
